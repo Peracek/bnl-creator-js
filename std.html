@@ -368,7 +368,7 @@
             beforeMe += 0x200 - remainsToBePadded;
           }
 
-          const binaryString = atob(files[fn]);
+          const binaryString = atob(getFile(fn));
           const buf = new Array(binaryString.length);
           for (let i = 0; i < binaryString.length; i++) {
             buf[i] = binaryString.charCodeAt(i);
