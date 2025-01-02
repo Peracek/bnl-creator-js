@@ -10,9 +10,10 @@
       var isOk = 1;
 
       var bnl;
+      const getFile = (name) => files[name];
 
       try {
-        bnl = bnl_create(json);
+        bnl = bnl_create(json, getFile);
       } catch (e) {
         console.error("Caught an error:", e.message);
         const explanation = document.createElement("span");

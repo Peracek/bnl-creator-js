@@ -329,7 +329,13 @@ function write_media_table(header, header_key, ptr_others, media_cnt) {
   return media_table_beg;
 }
 
-function write_all_media(real_key, ALL_MEDIA, ptr_others, media_table_beg) {
+function write_all_media(
+  real_key,
+  ALL_MEDIA,
+  ptr_others,
+  media_table_beg,
+  getFile
+) {
   let arr = [];
   for (const fn in ALL_MEDIA) {
     arr[ALL_MEDIA[fn]] = fn;
@@ -566,7 +572,7 @@ function load_input(jsonData) {
   };
 }
 
-function bnl_create(jsonOri) {
+function bnl_create(jsonOri, getFile) {
   // reset globals
   blockMedia = [];
   blockOthers = [];
@@ -825,7 +831,7 @@ function bnl_create(jsonOri) {
     mediaCnt
   );
 
-  write_all_media(real_key, ALL_MEDIA, ptrOthers, media_table_beg_ptr);
+  write_all_media(real_key, ALL_MEDIA, ptrOthers, media_table_beg_ptr, getFile);
 
   return header.concat(blockOids, blockOthers, blockMedia);
 }
