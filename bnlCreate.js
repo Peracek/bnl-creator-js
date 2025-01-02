@@ -567,6 +567,12 @@ function load_input(jsonData) {
 }
 
 function bnl_create(jsonOri) {
+  // reset globals
+  blockMedia = [];
+  blockOthers = [];
+  array_oid_to_num = {};
+  oid_noprint = {};
+
   var res = load_input(jsonOri);
   const json = res.namedData;
   if (!res.checks) {
