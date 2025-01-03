@@ -1,3 +1,7 @@
+/* eslint-disable no-constant-condition */
+/* eslint-disable prefer-const */
+/* eslint-disable no-var */
+
 //globals to work correctly with .concat
 var blockMedia = [];
 var blockOthers = [];
@@ -334,7 +338,7 @@ function write_all_media(
   ALL_MEDIA,
   ptr_others,
   media_table_beg,
-  getFile
+  files
 ) {
   let arr = [];
   for (const fn in ALL_MEDIA) {
@@ -354,7 +358,7 @@ function write_all_media(
       beforeMe += 0x200 - remainsToBePadded;
     }
 
-    const binaryString = atob(getFile(fn));
+    const binaryString = files[fn];
     const buf = new Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
       buf[i] = binaryString.charCodeAt(i);
@@ -572,7 +576,7 @@ function load_input(jsonData) {
   };
 }
 
-function bnl_create(jsonOri, getFile) {
+function bnl_create(jsonOri, files) {
   // reset globals
   blockMedia = [];
   blockOthers = [];
@@ -831,7 +835,11 @@ function bnl_create(jsonOri, getFile) {
     mediaCnt
   );
 
-  write_all_media(real_key, ALL_MEDIA, ptrOthers, media_table_beg_ptr, getFile);
+  write_all_media(real_key, ALL_MEDIA, ptrOthers, media_table_beg_ptr, files);
 
   return header.concat(blockOids, blockOthers, blockMedia);
 }
+
+module.exports = {
+  bnl_create,
+};
