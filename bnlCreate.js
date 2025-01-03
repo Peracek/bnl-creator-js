@@ -724,7 +724,7 @@ function bnl_create(jsonOri, getFile) {
 
   //write the quizes
   write_quiz(
-    json.quiz["quizes"],
+    json.quiz["quizes"] ?? [],
     json.quiz,
     header,
     header_key,
